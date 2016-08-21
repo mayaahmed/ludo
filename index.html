@@ -1,0 +1,113 @@
+<script src="file:///c:/mosh/web/lib/jquery.js"></script>
+<script src="file:///c:/mosh/web/lib/jquery-ui.js"></script>
+<script>
+/* From moshahmed at hmi-tech.in 2016-08-04 */
+/* From hmi-tech.in 2016-08-04 */
+var face0=new Image(); face0.src="d1.png";
+var face1=new Image(); face1.src="d2.png";
+var face2=new Image(); face2.src="d3.png";
+var face3=new Image(); face3.src="d4.png";
+var face4=new Image(); face4.src="d5.png";
+var face5=new Image(); face5.src="d6.png";
+
+function throw_dice(){
+  var random_dice=Math.round(Math.random()*5); // 0..5
+  document.images["mydice"].src = eval("face"+random_dice+".src")
+}
+
+$(document).ready(
+  (function add_kandis() {
+    for (var k = 1; k <= 4; k++) {
+      for (var i = 1; i <= 4; i++) {
+        var img = $('<img />', { 
+          src:  k +'.png',
+          id: 'kandi_'+k+'_'+i,
+          class: 'kandi ui-widget-content draggable',
+        });
+        var xb = $('#board').position().left;
+        var yb = $('#board').position().top;
+        var board_width = $('#board').width();
+        var board_height = $('#board').height();
+        var xi = (i-1)%2;
+        var yi = Math.floor((i-1)/2);
+        var xleft = [65,352,65,352];
+        var ytop =  [60,60,350,350];
+        var xl = xleft[k-1] + 56*xi;
+        var yt = ytop[k-1]  + 56*yi;
+        img.appendTo($('#kandis'));
+        img.css( {
+          left: xb + xl * board_width/500,
+          top:  yb + yt * board_height/500,
+        });
+      }
+    }
+throw_dice();
+//    roll();
+  $('#kandis > img').addClass("kandi");
+  $(".draggable").draggable();
+  })
+);
+
+
+</script>
+
+<style>
+
+body{
+ background: linear-gradient(black 10%,olive, black 50%,olive, khaki,white);
+}
+
+.kandi {
+  width:  35px;
+  height: 35px;
+  position: absolute;
+}
+
+.kandi:hover {
+  transform: scale(1.5);
+}
+
+#rolled {
+  font-size: 100px; line-height: normal
+}
+#rolled:hover {
+  font-size: 120px;
+}
+#board {float: left;
+  width:  500px;
+  height: 500px;
+ box-shadow: 5px 5px 30px #888888;
+}
+
+.dice {
+float: left;
+  width:  100px;
+  height: 100px;
+  margin-left: 50px;
+  margin-top: 200px;
+box-shadow: 5px 5px 30px #888888;
+
+ }
+
+.dice:hover{
+width:  115px;
+  height: 115px;
+opacity: 0.9;
+
+}
+
+
+</style>
+
+<body>
+<img src="ludo-board.png" height="500" width="500" id="board" name="board">
+<br>
+<form>
+<div id="kandis"> </div>
+
+<div id="dicediv">
+<img src="d1.png" name="mydice" class="dice ui-widget-content draggable" onClick="throw_dice()">
+</div>
+</form>
+
+</body>
