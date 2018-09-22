@@ -27,76 +27,92 @@ function restoreSnapshot() {
 }
 
 
+for(var i=0; i<4; i++){
+    var  len = gallery.length; 
+    var img2 = new Image();
+    img2.src=  "2.png"
+    img2.onload = function () {
+	context.drawImage(img2, 20, 350,40,40); 
+
+    }; 
+    gallery[len]={img: img2, imageX: 20, imageY: 350, imageWidth: 40, imageHeight: 40};
+
+    
+}
 
 
-function loadImages()
-{
+for(var i=0; i<4; i++){
+    var  len = gallery.length; 
+    var img1 = new Image();
+    img1.src=  "1.png"
+    img1.onload = function () {
+	context.drawImage(img1, 70, 350,40,40); 
 
-    for(var i=0; i<4; i++){
-        var  len = gallery.length; 
- 	img = new Image();
-	img.src=  "1.png"
-	gallery[len]={img: img, imageX: 20, imageY: 350, imageWidth: 40, imageHeight: 40};
+    }; 
 
-	draw(gallery[len]);
-    }
+    gallery[len]={img: img1, imageX: 70, imageY: 350, imageWidth: 40, imageHeight: 40};
+
+}
 
 
-    for(var i=0; i<4; i++){
-        var  len = gallery.length; 
- 	img = new Image();
-	img.src=  "2.png"
-	gallery[len]={img: img, imageX: 70, imageY: 350, imageWidth: 40, imageHeight: 40};
 
-	draw(gallery[len]);
-    }
 
-    for(var i=0; i<4; i++){
-        var  len = gallery.length; 
- 	img = new Image();
-	img.src=  "3.png"
-	gallery[len]={img: img, imageX: 120, imageY: 350, imageWidth: 40, imageHeight: 40};
+for(var i=0; i<4; i++){
+    var  len = gallery.length; 
+    var img3 = new Image();
+    img3.src=  "3.png"
+    img3.onload = function () {
+	context.drawImage(img3, 120, 350,40,40); 
 
-	draw(gallery[len]);
-    }
+    }; 
+    gallery[len]={img: img3, imageX: 120, imageY: 350, imageWidth: 40, imageHeight: 40};
 
-    for(var i=0; i<4; i++){
-        var  len = gallery.length; 
- 	img = new Image();
-	img.src=  "4.png"
-	gallery[len]={img: img, imageX: 170, imageY: 350, imageWidth: 40, imageHeight: 40};
+    
+}
 
-	draw(gallery[len]);
-    }
+for(var i=0; i<4; i++){
+    var  len = gallery.length; 
+    var img4 = new Image();
+    
+    img4.src=  "4.png"
+img4.onload = function () {
+	context.drawImage(img4, 170, 350,40,40); 
 
-}	
+    }; 
+    gallery[len]={img: img4, imageX: 170, imageY: 350, imageWidth: 40, imageHeight: 40};
+
+    
+}
+
+
 
 
 function initial()
 {
-takeSnapshot();
+    takeSnapshot();
     ludo.onload = function () {
 	context.drawImage(ludo, 0, 0,300,330); 
 
     }; 
 
- 
+    
 
-    loadImages();
+
 
 }
-
 
 initial();
 
 
 
-   
+
+
+
 
 
 function imageDrawAll(){
-   
-context.drawImage(ludo, 0, 0,300,330); 
+    
+    context.drawImage(ludo, 0, 0,300,330); 
     for(var i=0;i<gallery.length;i++)
         draw(gallery[i] );
 
@@ -121,7 +137,7 @@ function hitImage(x,y,pic){
 
 
 function imageMouseDown(e){
-   
+    
     startX=parseInt(e.clientX-offsetX);
     startY=parseInt(e.clientY-offsetY);
 
@@ -161,8 +177,8 @@ function imageMouseMove(e){
         var dy=mouseY-startY;
         gallery[selectedImage].imageX+=dx;
         gallery[selectedImage].imageY+=dy;
-      //  gallery[selectedImage].imageRight+=dx;
-      //  gallery[selectedImage].imageBottom+=dy;
+	//  gallery[selectedImage].imageRight+=dx;
+	//  gallery[selectedImage].imageBottom+=dy;
         // reset the startXY for next time
         startX=mouseX;
         startY=mouseY;
